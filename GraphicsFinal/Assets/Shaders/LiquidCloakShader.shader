@@ -3,7 +3,7 @@
 		_Color ("Color", Color) = (1,1,1,1)
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
-		_IndexRefract ("Index of Refraction", Range(1,5)) = 1.333
+		_IndexRefract ("Index of Refraction", Range(0.5,5)) = 1.333
 	}
 	SubShader {
 		Tags { "Queue" = "Transparent" }
