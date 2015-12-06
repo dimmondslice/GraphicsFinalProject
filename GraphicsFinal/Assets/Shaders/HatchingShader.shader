@@ -1,7 +1,8 @@
 ﻿Shader "Custom/HatchingShader" {
     Properties{
 
-        _Color("Color", Color) = (1.0,1.0,1.0,1.0)
+        _LineColor("Line Color", Color) = (0.0, 0.0, 0.0, 0.0)
+        _BackgroundColor("Background Color", Color) = (1.0, 1.0, 1.0, 1.0)
 
         _HatchTex0("Hatch Texture 0", 2D) = "white" {}
         _HatchTex1("Hatch Texture 1", 2D) = "white" {}
@@ -33,8 +34,17 @@
             #include "UnitycG.cginc"
             #include "Autolight.cginc"
 
-            uniform float4 _Color;
+            uniform float4 _LineColor;
             
+            sampler2D _HatchTex0;
+            sampler2D _HatchTex1;
+            sampler2D _HatchTex2;
+            sampler2D _HatchTex3;
+            sampler2D _HatchTex4;
+            sampler2D _HatchTex5;
+
+            //UNITY DEFINED
+            uniform float4 _LightColor0;
 
             struct vertexInput {
                 float4 vertex : POSITION;
@@ -56,6 +66,9 @@
                 float4 posWorld : TEXCORD6;
 
                 LIGHTING_COORDS(3, 4)
+
+
+                float3 lightDir : TEXCOORD5;
 
             };
 
@@ -85,13 +98,54 @@
             //FRAGMENT FUNCTION
             float4 frag(vertexOutput i) : SV_Target{
 
-                float atten = LIGHT_ATTENUATION(i);
+            //float atten = LIGHT_ATTENUATION(i);
+            //float4 lights = dot(i.normalDir, i.lightDir);
 
+            float atten = 1.0;
+            float3 lightDirec = normalize(_WorldSpaceLightPos0.xyz);
 
-                //return _Color * float4(abs( i.normalDir), 1.0);
+            //float4 shading = atten * lights;
 
-                //return _Color;
-                return float4(0.0, 0.0, 0.0, 1.0);
+        //DIFFUSE LIGHT MODEL
+            float3 diffuseReflect = atten * _LightColor0.xyz * saturate(dot(i.normalDir, lightDirec));
+
+            float shading = UNITY_LIGHTMODEL_AMBIENT + float4(diffuseReflect, 1.0);
+            //float shading;
+
+                //return _LineColor * float4(abs( i.normalDir), 1.0);
+
+                //return _LineColor;
+                ///return float4(0.0, 0.0, 0.0, 1.0);
+
+            float4 c;
+            float step = 1.0 / 6.0;
+            if (shading <= step) {
+                c = lerp(tex2D(_HatchTex5, i.fragUV), tex2D(_HatchTex4, i.fragUV), 6.0 * shading);
+            }
+            if (shading > step && shading <= step * 2.0) {
+                c = lerp(tex2D(_HatchTex4, i.fragUV), tex2D(_HatchTex3, i.fragUV), 6.0 * (shading - step));
+            }
+            if (shading > (2.0 * step) && shading <= step * 3.0) {
+                c = lerp(tex2D(_HatchTex3, i.fragUV), tex2D(_HatchTex2, i.fragUV), 6.0 * (shading - (step * 2.0)));
+            }
+            if (shading > (3.0 * step) && shading <= step * 4.0) {
+                c = lerp(tex2D(_HatchTex2, i.fragUV), tex2D(_HatchTex1, i.fragUV), 6.0 * (shading - (step * 3.0)));
+            }
+            if (shading > (4.0 * step) && shading <= step * 5.0) {
+                c = lerp(tex2D(_HatchTex1, i.fragUV), tex2D(_HatchTex0, i.fragUV), 6.0 * (shading - (step * 4.0)));
+            }
+            if (shading > 5.0 * step) {
+                c = lerp(tex2D(_HatchTex0, i.fragUV), float4(1.0, 1.0, 1.0, 1.0), 6.0 * (shading - (step * 5.0)));
+            }
+
+            float4 source = lerp(lerp(_LineColor, float4(1.0, 1.0, 1.0, 1.0), c.r), c, 0.5);
+
+            //return _LineColor * float4(abs( i.normalDir), 1.0);
+
+            //return float4 (atten, atten, atten, 1.0);
+
+            return source;
+
             }
 
 
@@ -112,7 +166,7 @@
             #include "UnitycG.cginc"
             #include "Autolight.cginc"
 
-            uniform float4 _Color;
+            uniform float4 _LineColor;
 
             sampler2D _HatchTex0;
             sampler2D _HatchTex1;
@@ -202,14 +256,14 @@
                     c = lerp(tex2D(_HatchTex0, i.fragUV), float4(1.0, 1.0, 1.0, 1.0), 6.0 * (shading - (step * 5.0)));
                 }
 
-                float4 source = lerp(lerp(_Color, float4(1.0, 1.0, 1.0, 1.0), c.r), c, 0.5);
+                float4 source = lerp(lerp(_LineColor, float4(1.0, 1.0, 1.0, 1.0), c.r), c, 0.5);
 
-            //return _Color * float4(abs( i.normalDir), 1.0);
+            //return _LineColor * float4(abs( i.normalDir), 1.0);
 
                 //return float4 (atten, atten, atten, 1.0);
 
                 return source;
-                //return _Color * atten * lights;
+                //return _LineColor * atten * lights;
                 //return float4(1.0, 1.0, 1.0, 1.0) * atten * lights;
             }
 
