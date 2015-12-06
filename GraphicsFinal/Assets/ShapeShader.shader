@@ -52,7 +52,7 @@
 				//o.Albedo *= o.Emission;
 			//}	
 		}
-		ENDCG		
+		ENDCG
 	}	
 	Fallback "Diffuse"
 }
