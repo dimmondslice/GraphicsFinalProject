@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: 3cba7d7c68c6d7e40b61d478b5c29d59
+timeCreated: 1449442397
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: anim_global01
+    100002: be_head01
+    100004: be_l_hand01
+    100006: be_l_toe01
+    100008: be_pelvis01
+    100010: be_r_hand01
+    100012: be_r_toe01
+    100014: bind_chest01
+    100016: bind_head01
+    100018: bind_l_ankle01
+    100020: bind_l_foot01
+    100022: bind_l_knee01
+    100024: bind_l_thigh01
+    100026: bind_pelvis01
+    100028: bind_r_ankle01
+    100030: bind_r_dPad01
+    100032: bind_r_foot01
+    100034: bind_r_hand01
+    100036: bind_r_knee01
+    100038: bind_r_thigh01
+    100040: bind_root01
+    100042: bind_stomach01
+    100044: bn_l_hand01
+    100046: bn_r_wrist01
+    100048: GSAS
+    100050: gsas_dPad01
+    100052: gsas_dPadBack01
+    100054: //RootNode
+    100056: gsas_head01
+    100058: gsas_hoodie01
+    100060: gsas_l_hand01
+    100062: gsas_l_hoodieCord01
+    100064: gsas_l_shoe01
+    100066: gsas_OcRift01
+    100068: gsas_r_glove01
+    100070: gsas_r_hoodieCord01
+    100072: gsas_r_shoe01
+    100074: GSASmodel
+    100076: jDrv_l_foot01
+    100078: jDrv_r_foot01
+    100080: jnt_l_forearm01
+    100082: jnt_l_shoulder01
+    100084: jnt_neck01
+    100086: jnt_r_forearm01
+    100088: jnt_r_shoulder01
+    100090: persp1
+    100092: skeleton01
+    100094: transform12
+    400000: anim_global01
+    400002: be_head01
+    400004: be_l_hand01
+    400006: be_l_toe01
+    400008: be_pelvis01
+    400010: be_r_hand01
+    400012: be_r_toe01
+    400014: bind_chest01
+    400016: bind_head01
+    400018: bind_l_ankle01
+    400020: bind_l_foot01
+    400022: bind_l_knee01
+    400024: bind_l_thigh01
+    400026: bind_pelvis01
+    400028: bind_r_ankle01
+    400030: bind_r_dPad01
+    400032: bind_r_foot01
+    400034: bind_r_hand01
+    400036: bind_r_knee01
+    400038: bind_r_thigh01
+    400040: bind_root01
+    400042: bind_stomach01
+    400044: bn_l_hand01
+    400046: bn_r_wrist01
+    400048: GSAS
+    400050: gsas_dPad01
+    400052: gsas_dPadBack01
+    400054: //RootNode
+    400056: gsas_head01
+    400058: gsas_hoodie01
+    400060: gsas_l_hand01
+    400062: gsas_l_hoodieCord01
+    400064: gsas_l_shoe01
+    400066: gsas_OcRift01
+    400068: gsas_r_glove01
+    400070: gsas_r_hoodieCord01
+    400072: gsas_r_shoe01
+    400074: GSASmodel
+    400076: jDrv_l_foot01
+    400078: jDrv_r_foot01
+    400080: jnt_l_forearm01
+    400082: jnt_l_shoulder01
+    400084: jnt_neck01
+    400086: jnt_r_forearm01
+    400088: jnt_r_shoulder01
+    400090: persp1
+    400092: skeleton01
+    400094: transform12
+    4300000: gsas_head01
+    4300002: gsas_OcRift01
+    4300004: gsas_hoodie01
+    4300006: gsas_l_hoodieCord01
+    4300008: gsas_r_hoodieCord01
+    4300010: gsas_dPadBack01
+    4300012: gsas_l_hand01
+    4300014: gsas_r_glove01
+    4300016: gsas_dPad01
+    4300018: gsas_l_shoe01
+    4300020: gsas_r_shoe01
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: gsas_dPad01
+    13700002: gsas_dPadBack01
+    13700004: gsas_head01
+    13700006: gsas_hoodie01
+    13700008: gsas_l_hand01
+    13700010: gsas_l_hoodieCord01
+    13700012: gsas_l_shoe01
+    13700014: gsas_OcRift01
+    13700016: gsas_r_glove01
+    13700018: gsas_r_hoodieCord01
+    13700020: gsas_r_shoe01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
