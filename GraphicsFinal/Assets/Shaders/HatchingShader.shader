@@ -4,6 +4,8 @@
         _LineColor("Line Color", Color) = (0.0, 0.0, 0.0, 0.0)
         _BackgroundColor("Background Color", Color) = (1.0, 1.0, 1.0, 1.0)
 
+        _TAMScaling("TAM Scaling", Float) = 1.0
+
         _HatchTex0("Hatch Texture 0", 2D) = "white" {}
         _HatchTex1("Hatch Texture 1", 2D) = "white" {}
         _HatchTex2("Hatch Texture 2", 2D) = "white" {}
@@ -35,6 +37,8 @@
             #include "Autolight.cginc"
 
             uniform float4 _LineColor;
+
+            uniform float _TAMScaling;
             
             sampler2D _HatchTex0;
             sampler2D _HatchTex1;
@@ -117,25 +121,25 @@
                 //return _LineColor;
                 ///return float4(0.0, 0.0, 0.0, 1.0);
 
-            float4 c;
+            float4 c = float4(0.0, 0.0, 0.0, 0.0);
             float step = 1.0 / 6.0;
             if (shading <= step) {
-                c = lerp(tex2D(_HatchTex5, i.fragUV), tex2D(_HatchTex4, i.fragUV), 6.0 * shading);
+                c = lerp(tex2D(_HatchTex5, i.fragUV * _TAMScaling), tex2D(_HatchTex4, i.fragUV * _TAMScaling), 6.0 * shading);
             }
             if (shading > step && shading <= step * 2.0) {
-                c = lerp(tex2D(_HatchTex4, i.fragUV), tex2D(_HatchTex3, i.fragUV), 6.0 * (shading - step));
+                c = lerp(tex2D(_HatchTex4, i.fragUV * _TAMScaling), tex2D(_HatchTex3, i.fragUV * _TAMScaling), 6.0 * (shading - step));
             }
             if (shading > (2.0 * step) && shading <= step * 3.0) {
-                c = lerp(tex2D(_HatchTex3, i.fragUV), tex2D(_HatchTex2, i.fragUV), 6.0 * (shading - (step * 2.0)));
+                c = lerp(tex2D(_HatchTex3, i.fragUV * _TAMScaling), tex2D(_HatchTex2, i.fragUV * _TAMScaling), 6.0 * (shading - (step * 2.0)));
             }
             if (shading > (3.0 * step) && shading <= step * 4.0) {
-                c = lerp(tex2D(_HatchTex2, i.fragUV), tex2D(_HatchTex1, i.fragUV), 6.0 * (shading - (step * 3.0)));
+                c = lerp(tex2D(_HatchTex2, i.fragUV * _TAMScaling), tex2D(_HatchTex1, i.fragUV * _TAMScaling), 6.0 * (shading - (step * 3.0)));
             }
             if (shading > (4.0 * step) && shading <= step * 5.0) {
-                c = lerp(tex2D(_HatchTex1, i.fragUV), tex2D(_HatchTex0, i.fragUV), 6.0 * (shading - (step * 4.0)));
+                c = lerp(tex2D(_HatchTex1, i.fragUV * _TAMScaling), tex2D(_HatchTex0, i.fragUV * _TAMScaling), 6.0 * (shading - (step * 4.0)));
             }
             if (shading > 5.0 * step) {
-                c = lerp(tex2D(_HatchTex0, i.fragUV), float4(1.0, 1.0, 1.0, 1.0), 6.0 * (shading - (step * 5.0)));
+                c = lerp(tex2D(_HatchTex0, i.fragUV * _TAMScaling), float4(1.0, 1.0, 1.0, 1.0), 6.0 * (shading - (step * 5.0)));
             }
 
             float4 source = lerp(lerp(_LineColor, float4(1.0, 1.0, 1.0, 1.0), c.r), c, 0.5);
@@ -235,7 +239,7 @@
 
                 float shading = atten * lights;
                 
-                float4 c;
+                float4 c = float4(0.0, 0.0, 0.0, 0.0);
                 float step = 1.0 / 6.0;
                 if (shading <= step) {
                     c = lerp(tex2D(_HatchTex5, i.fragUV), tex2D(_HatchTex4, i.fragUV), 6.0 * shading);
