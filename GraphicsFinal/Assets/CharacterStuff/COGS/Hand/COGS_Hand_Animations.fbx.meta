@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: f0b0cb1fe352c4b4eb50aee2b906f75d
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
     100002: hand1
@@ -228,6 +228,10 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -462,7 +466,7 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 31
       lastFrame: 76
-      wrapMode: 1
+      wrapMode: 4
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -1572,7 +1576,7 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 262
       lastFrame: 310
-      wrapMode: 1
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -2466,11 +2470,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -2489,7 +2495,11 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
+    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 1
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

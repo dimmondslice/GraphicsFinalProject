@@ -1,4 +1,4 @@
-﻿Shader "Custom/DisolveShader" {
+﻿Shader "Sliced/SlicedBasic" {
 	Properties {
         _Color("Color", Color) = (1.0, 1.0, 1.0, 1.0)
         _Emission("Emission", Color) = (1.0, 1.0, 1.0, 1.0)
@@ -8,17 +8,15 @@
 		_SliceGuide ("SliceGuide (RGB)", 2D) = "white" {}
 		_SliceAmount ("Slice Amount", Range(0.0, 1.0)) = 0.5
 		
-		_BurnSize ("BurnSize", Range(0.0, 1.0)) = 0.15
-		_BurnRamp ("Burn Ramp (RGB)", 2D) = "white" {}	
 	}
-	
+
 	SubShader {
-		Tags {"RenderType" = "Opaque"}
+
+		Tags{ "RenderType" = "Opaque" }
 		Cull Off
 
 		CGPROGRAM
-		
-		//remove "addshadow" if we're not using shadows, which we probably should
+
 		#pragma surface surf Lambert addshadow
 		
 		struct Input {
@@ -44,13 +42,6 @@
 			o.Albedo = (tex2D(_MainTex, In.uv_MainTex).rgb) * _Color;
 
             o.Emission = (tex2D(_EmissionMap, In.uv_EmissionMap).rgb) * _Emission;
-
-			half test = tex2D(_SliceGuide, In.uv_MainTex).rgb - _SliceAmount;
-			
-			//if (test < _BurnSize && _SliceAmount > 0 && _SliceAmount < 1) {
-				//o.Emission = tex2D(_BurnRamp, float2(test * (1/_BurnSize), 0));
-				//o.Albedo *= o.Emission;
-			//}	
 		}
 		ENDCG
 	}	
