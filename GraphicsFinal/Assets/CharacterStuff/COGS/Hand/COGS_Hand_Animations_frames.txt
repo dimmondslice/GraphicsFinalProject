@@ -1,0 +1,8 @@
+Animations with frame #'s
+B Reach #2-30
+B Swing #31-76
+B Grabbed #77-145
+B Throw #146-212
+Dash Attack Flick #213-240
+C Flick #241-310 (*NEW dash attack flick)
+Dash Attack Stop #311-348
