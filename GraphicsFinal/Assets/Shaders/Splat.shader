@@ -62,10 +62,12 @@
 				v2f o;
 				float4x4 modelMatrixInverse = _World2Object;
 				o.posWorld = mul(_Object2World, v.vertex);
-				o.normal = v.normal;
+				//o.normal = v.normal;
+				o.normal = normalize(mul(float4(v.normal, 0.0), _World2Object).xyz);
 				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				o.lightDir = ObjSpaceLightDir(v.vertex);
+				//o.lightDir = ObjSpaceLightDir(v.vertex);
+				o.lightDir = normalize(_WorldSpaceLightPos0.xyz);
 				TRANSFER_VERTEX_TO_FRAGMENT(o);
 
 				o.tangentWorld = normalize(
@@ -109,6 +111,7 @@
 				}
 
 				float4 lights = dot(normal, i.lightDir);
+				lights = max(0.0, lights);
 				fixed4 c;
 				c.rgb = tex.rgb * _LightColor0;
 				c.rgb *= lights;
@@ -183,7 +186,7 @@
 
 			float4 lights = dot(i.normal, i.lightDir);
 			fixed4 c;
-			c.rgb = tex.rgb * _LightColor0 * (atten);
+			c.rgb = tex.rgb * _LightColor0 *(atten);
 			c.rgb *= lights;
 			c.a = tex.a + _LightColor0.a * atten;
 			return c;
