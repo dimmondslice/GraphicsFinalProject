@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Discoer : MonoBehaviour 
 {
+    public float startAmount;
     public float lowerBound;
     public float upperBound;
 
@@ -17,7 +18,7 @@ public class Discoer : MonoBehaviour
     void Start()
     {
         goal = upperBound;
-        GetComponent<Renderer>().material.SetFloat("_SliceAmount", 0);
+        GetComponent<Renderer>().material.SetFloat("_SliceAmount", startAmount);
     }
     void Update()
     {
