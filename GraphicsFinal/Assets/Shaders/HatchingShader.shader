@@ -112,23 +112,18 @@
             //FRAGMENT FUNCTION
             float4 frag(vertexOutput i) : SV_Target{
 
-            //float atten = LIGHT_ATTENUATION(i);
-            //float4 lights = dot(i.normalDir, i.lightDir);
-
             float atten = 1.0;
-            //float3 lightDirec = normalize(_WorldSpaceLightPos0.xyz);
-
-            //float4 shading = atten * lights;
+            //float atten = LIGHT_ATTENUATION(i);
 
         //DIFFUSE LIGHT MODEL
-            //float3 diffuseReflect = atten * _LightColor0.xyz * saturate(dot(i.normalDir, lightDirec));
-            float3 diffuseReflect = atten * (max(0.0, dot(i.normalDir, i.lightDir)));
+            float3 diffuseReflect = atten * _LightColor0 * (max(0.0, dot(i.normalDir, i.lightDir)));
 
             //return float4(diffuseReflect.xyz, 1.0);
             
 
             
-            float shading = UNITY_LIGHTMODEL_AMBIENT + float4(diffuseReflect, 1.0);
+            //float shading = UNITY_LIGHTMODEL_AMBIENT + float4(diffuseReflect, 1.0);
+            float shading = float4(diffuseReflect, 1.0);
 
                 //return _LineColor * float4(abs( i.normalDir), 1.0);
 
@@ -313,6 +308,51 @@
 
         }
         
+        /*
+        Pass {
+            Name "ShadowCaster"
+            Tags {"LightMode" = "ShadowCaster"}
+
+            Fog {Mode Off}
+            ZWrite On ZTest LEqual Cull Off
+            Offset 1, 1
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile_shadowcaster
+            #pragma fragmentoption ARB_precision_hint_fastest
+
+            #include "UnityCG.cginc"
+
+            struct vertexInput {
+
+            };
+
+            struct vertexOutput {
+
+            };
+
+
+            vertexOutput vert(vertexInput v) {
+
+            }
+
+            float4 frag (vertexOutput i)
+
+
+            ENDCG
+
+        }
+            */
+        /*
+        Pass{
+            Name "ShadowCollector"
+            Tags {"LightMode" = "ShadowCollector"}
+
+
+        }
+            */
 
 	} 
 	FallBack "Diffuse"
