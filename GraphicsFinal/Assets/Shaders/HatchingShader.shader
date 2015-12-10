@@ -309,7 +309,7 @@
 
         }
         
-        /*
+        
         Pass {
             Name "ShadowCaster"
             Tags {"LightMode" = "ShadowCaster"}
@@ -324,28 +324,37 @@
             #pragma multi_compile_shadowcaster
             #pragma fragmentoption ARB_precision_hint_fastest
 
+			#include "ShadowCastCG.cginc"
             #include "UnityCG.cginc"
 
+			/*
             struct vertexInput {
 
             };
+			*/
 
             struct vertexOutput {
-
+				V2F_SHADOW_CASTER;
             };
 
 
-            vertexOutput vert(vertexInput v) {
-
+            //vertexOutput vert(vertexInput v) {
+			vertexOutput vert (appdata_full v)
+				vertexOutput o;
+				TRANSFER_SHADOW_CASTER(o)
+				return o;
             }
 
-            float4 frag (vertexOutput i)
+            float4 frag (vertexOutput i) {
+				SHADOW_CASTER_FRAGMENT(i)
+			}
 
 
             ENDCG
 
         }
-            */
+		
+            
         /*
         Pass{
             Name "ShadowCollector"
